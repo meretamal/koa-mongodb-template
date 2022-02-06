@@ -1,5 +1,5 @@
 import Koa from 'koa';
-import { router } from './routes';
+import { router } from './routers';
 
 export const app = new Koa();
 
