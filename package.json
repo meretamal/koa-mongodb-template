@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/meretamal/koa-mongodb-starter/issues"
   },
-  "homepage": "https://github.com/meretamal/koa-mongodb-starter#readme"
+  "homepage": "https://github.com/meretamal/koa-mongodb-starter#readme",
+  "devDependencies": {
+    "nodemon": "^2.0.15",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  }
 }
