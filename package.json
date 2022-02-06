@@ -40,6 +40,8 @@
   },
   "dependencies": {
     "@koa/router": "^10.1.1",
-    "koa": "^2.13.4"
+    "dotenv": "^16.0.0",
+    "koa": "^2.13.4",
+    "mongoose": "^6.2.0"
   }
 }
