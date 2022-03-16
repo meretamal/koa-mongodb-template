@@ -17,7 +17,7 @@ usersRouter.post(
       lastName: string().required(),
       email: string().email().required(),
       password: string().required(),
-    }),
+    }).strict(),
   ),
   UsersController.create,
 );
