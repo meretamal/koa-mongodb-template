@@ -26,4 +26,9 @@ export class UsersController {
       }
     }
   }
+
+  static async list(ctx: RouterContext) {
+    const users = await User.find();
+    ctx.body = users;
+  }
 }

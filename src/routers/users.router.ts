@@ -18,3 +18,5 @@ usersRouter.post(
   ),
   UsersController.create,
 );
+
+usersRouter.get('/', UsersController.list);
