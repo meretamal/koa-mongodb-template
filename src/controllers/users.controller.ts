@@ -19,7 +19,10 @@ export class UsersController {
         ctx.status = 201;
         ctx.body = user;
       } catch (error) {
-        ctx.throw(422);
+        ctx.status = 422;
+        ctx.body = {
+          message: 'Unprocessable entity',
+        };
       }
     }
   }
