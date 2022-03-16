@@ -2,8 +2,10 @@ import Router from '@koa/router';
 import { object, string } from 'yup';
 import { UsersController } from '@/controllers/users.controller';
 import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-request-body.middleware';
+import { vaidateRequestParamsMiddleware } from '@/middlewares/validation/validate-request-params.middleware';
 import { findUserByIdMiddleware } from '@/middlewares/users/find-user-by-id.middleware';
 import { CreateUserDto } from '@/interfaces/dtos/users/create-user.dto';
+import { objectId } from '@/utils/yup/custom-schemas/object-id';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
@@ -20,4 +22,9 @@ usersRouter.post(
   UsersController.create,
 );
 usersRouter.get('/', UsersController.list);
-usersRouter.get('/:id', findUserByIdMiddleware, UsersController.detail);
+usersRouter.get(
+  '/:id',
+  vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
+  findUserByIdMiddleware,
+  UsersController.detail,
+);
