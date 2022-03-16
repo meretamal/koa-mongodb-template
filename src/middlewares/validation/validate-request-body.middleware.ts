@@ -8,7 +8,7 @@ export function vaidateRequestBodyMiddleware<Type>(
   return async function validate(ctx: RouterContext, next: Next) {
     try {
       await validationSchema.validate(ctx.request.body, { abortEarly: false });
-      next();
+      await next();
     } catch (error) {
       ctx.status = 400;
       ctx.body = {
