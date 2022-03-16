@@ -1,6 +1,20 @@
-import { UsersController } from '@/controllers/users.controller';
 import Router from '@koa/router';
+import { object, string } from 'yup';
+import { UsersController } from '@/controllers/users.controller';
+import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-request-body.middleware';
+import { CreateUserDto } from '@/interfaces/dtos/users/create-user.dto';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
-usersRouter.post('/', UsersController.create);
+usersRouter.post(
+  '/',
+  vaidateRequestBodyMiddleware<CreateUserDto>(
+    object({
+      name: string().required(),
+      lastName: string().required(),
+      email: string().email().required(),
+      password: string().required(),
+    }),
+  ),
+  UsersController.create,
+);
