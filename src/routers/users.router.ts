@@ -5,7 +5,7 @@ import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-
 import { vaidateRequestParamsMiddleware } from '@/middlewares/validation/validate-request-params.middleware';
 import { findUserByIdMiddleware } from '@/middlewares/users/find-user-by-id.middleware';
 import { CreateUserDto } from '@/interfaces/dtos/users/create-user.dto';
-import { objectId } from '@/utils/yup/custom-schemas/object-id';
+import { objectId } from '@/utils/yup/custom-schemas/object-id.schema';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
