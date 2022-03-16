@@ -33,24 +33,7 @@ export class UsersController {
   }
 
   static async detail(ctx: RouterContext) {
-    const { id } = ctx.params;
-    try {
-      const user = await User.findById(id).exec();
-      if (!user) {
-        ctx.status = 404;
-        ctx.body = {
-          message: 'Not found',
-          errors: [`user with objectId ${id} does not exist`],
-        };
-      } else {
-        ctx.body = user;
-      }
-    } catch (error) {
-      ctx.status = 400;
-      ctx.body = {
-        message: 'Bad request',
-        errors: [`${id} is not a valid objectId]`],
-      };
-    }
+    const { user } = ctx.state;
+    ctx.body = user;
   }
 }
