@@ -20,3 +20,5 @@ usersRouter.post(
 );
 
 usersRouter.get('/', UsersController.list);
+
+usersRouter.get('/:id', UsersController.detail);
