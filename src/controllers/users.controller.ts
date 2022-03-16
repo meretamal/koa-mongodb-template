@@ -1,6 +1,7 @@
 import { RouterContext } from '@koa/router';
 import { User } from '@/models/user.model';
 import { CreateUserDto } from '@/interfaces/dtos/users/create-user.dto';
+import { UpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
 
 export class UsersController {
   static async create(ctx: RouterContext) {
@@ -34,6 +35,14 @@ export class UsersController {
 
   static async detail(ctx: RouterContext) {
     const { user } = ctx.state;
+    ctx.body = user;
+  }
+
+  static async update(ctx: RouterContext) {
+    const data = <UpdateUserDto>ctx.request.body;
+    const user = await User.findByIdAndUpdate(ctx.params.id, data, {
+      new: true,
+    });
     ctx.body = user;
   }
 }
