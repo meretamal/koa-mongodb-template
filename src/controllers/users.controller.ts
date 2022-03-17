@@ -45,4 +45,11 @@ export class UsersController {
     });
     ctx.body = user;
   }
+
+  static async delete(ctx: RouterContext) {
+    await User.findByIdAndDelete(ctx.params.id);
+    ctx.body = {
+      message: 'Deleted',
+    };
+  }
 }

@@ -43,3 +43,9 @@ usersRouter.patch(
   ),
   UsersController.update,
 );
+usersRouter.del(
+  '/:id',
+  vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
+  findUserByIdMiddleware,
+  UsersController.delete,
+);
