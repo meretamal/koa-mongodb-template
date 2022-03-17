@@ -22,13 +22,16 @@ usersRouter.post(
   ),
   UsersController.create,
 );
+
 usersRouter.get('/', UsersController.list);
+
 usersRouter.get(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
   findUserByIdMiddleware,
   UsersController.detail,
 );
+
 usersRouter.patch(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
@@ -43,6 +46,7 @@ usersRouter.patch(
   ),
   UsersController.update,
 );
+
 usersRouter.del(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
