@@ -26,4 +26,11 @@ schema.pre(
   },
 );
 
+schema.methods.comparePassword = function comparePassword(
+  this: IUser,
+  password: string,
+) {
+  return bcrypt.compare(password, this.password);
+};
+
 export const User = model<IUser>('User', schema);
