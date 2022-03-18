@@ -1,4 +1,6 @@
 import Router, { RouterContext } from '@koa/router';
+import jwt from 'koa-jwt';
+import { config } from '@/config';
 import { usersRouter } from './users.router';
 import { authRouter } from './auth.router';
 
@@ -10,5 +12,8 @@ router.get('/', (ctx: RouterContext) => {
   };
 });
 
-router.use(usersRouter.routes());
 router.use(authRouter.routes());
+
+router.use(jwt({ secret: config.jwtSecret }));
+
+router.use(usersRouter.routes());
