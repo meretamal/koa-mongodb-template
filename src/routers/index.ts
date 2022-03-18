@@ -14,6 +14,6 @@ router.get('/', (ctx: RouterContext) => {
 
 router.use(authRouter.routes());
 
-router.use(jwt({ secret: config.jwt.secret }));
+router.use(jwt({ secret: config.jwt.secret, key: 'authData' }));
 
 router.use(usersRouter.routes());
