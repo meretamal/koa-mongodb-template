@@ -3,7 +3,7 @@ import { User } from '@/models/user.model';
 import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/utils/jwt/generate-token';
-import { sendEmail } from '@/mailer';
+import { addSendEmailJob } from '@/jobs/send-email.job';
 import { config } from '@/config';
 
 export class AuthController {
@@ -18,7 +18,7 @@ export class AuthController {
       const user = new User({ name, lastName, email, password });
       try {
         await user.save();
-        await sendEmail({
+        addSendEmailJob({
           receptant: email,
           subject: `Welcome to ${config.app.name}`,
           template: 'sign-up',
