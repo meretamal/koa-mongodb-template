@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import { object, string } from 'yup';
+import { object, string, ref } from 'yup';
 import { AuthController } from '@/controllers/auth.controller';
 import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-request-body.middleware';
 import { SignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
@@ -15,6 +15,9 @@ authRouter.post(
       lastName: string().required(),
       email: string().email().required(),
       password: string().required(),
+      confirmPassword: string()
+        .required()
+        .oneOf([ref('password'), null], "passwords don't match"),
     }),
   ),
   AuthController.signUp,
