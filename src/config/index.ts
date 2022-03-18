@@ -22,4 +22,8 @@ export const config = {
     smtpPassword: process.env.MAILER_SMTP_PASSWORD!,
     sender: process.env.MAILER_SENDER!,
   },
+  redis: {
+    host: process.env.REDIS_HOST || 'localhost',
+    port: Number(process.env.REDIS_PORT || 6379),
+  },
 };
