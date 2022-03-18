@@ -6,11 +6,15 @@ dotenv.config();
 export const config = {
   app: {
     name: process.env.APP_NAME || 'Koa MongoDB Starter',
+    port: Number(process.env.PORT || 3000),
   },
-  port: parseInt(process.env.PORT || '3000', 10),
-  databaseUrl: process.env.DATABASE_URL!,
-  jwtSecret: process.env.JWT_SECRET!,
-  jwtExpiration: process.env.JWT_EXPIRATION,
+  database: {
+    url: process.env.DATABASE_URL!,
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET!,
+    expiration: process.env.JWT_EXPIRATION,
+  },
   mailer: {
     smtpHost: process.env.MAILER_SMTP_HOST!,
     smtpPort: Number(process.env.MAILER_SMTP_PORT || 465),

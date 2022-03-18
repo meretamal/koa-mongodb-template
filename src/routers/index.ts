@@ -37,6 +37,6 @@ router.get('/', (ctx: RouterContext) => {
 
 router.use(authRouter.routes());
 
-router.use(jwt({ secret: config.jwtSecret }));
+router.use(jwt({ secret: config.jwt.secret }));
 
 router.use(usersRouter.routes());
