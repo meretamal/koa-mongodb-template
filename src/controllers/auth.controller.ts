@@ -3,19 +3,27 @@ import { User } from '@/models/user.model';
 import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/utils/jwt/generate-token';
+import { sendEmail } from '@/mailer';
+import { config } from '@/config';
 
 export class AuthController {
   static async signUp(ctx: RouterContext) {
-    const data = <ISignUpDto>ctx.request.body;
-    const existingUser = await User.findOne({ email: data.email }).exec();
+    const { name, lastName, email, password } = <ISignUpDto>ctx.request.body;
+    const existingUser = await User.findOne({ email }).exec();
     if (existingUser) {
       ctx.throw(409, {
-        errors: [`user with email ${data.email} already exists`],
+        errors: [`user with email ${email} already exists`],
       });
     } else {
-      const user = new User(data);
+      const user = new User({ name, lastName, email, password });
       try {
         await user.save();
+        await sendEmail({
+          receptant: email,
+          subject: `Welcome to ${config.app.name}`,
+          template: 'sign-up',
+          data: { name, lastName },
+        });
         ctx.status = 201;
         ctx.body = user;
       } catch (error) {
