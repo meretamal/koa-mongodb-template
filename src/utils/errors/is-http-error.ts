@@ -1,4 +1,4 @@
-import { IHttpError } from '@/interfaces/errors/http-error.interface';
+import { IHttpError } from '@/interfaces/errors/http.error';
 
 export function isHttpError(error: any): error is IHttpError {
   return (
