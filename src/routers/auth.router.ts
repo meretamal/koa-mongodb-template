@@ -18,7 +18,7 @@ authRouter.post(
       confirmPassword: string()
         .required()
         .oneOf([ref('password'), null], "passwords don't match"),
-    }),
+    }).strict(),
   ),
   AuthController.signUp,
 );
