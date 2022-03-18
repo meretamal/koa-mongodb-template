@@ -31,7 +31,7 @@ export class AuthController {
 
   static async signIn(ctx: RouterContext) {
     const { email, password } = <SignInDto>ctx.request.body;
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select('+password').exec();
     if (!user) {
       ctx.status = 404;
       ctx.body = {
