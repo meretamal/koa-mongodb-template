@@ -4,7 +4,7 @@ import { UsersController } from '@/controllers/users.controller';
 import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-request-body.middleware';
 import { vaidateRequestParamsMiddleware } from '@/middlewares/validation/validate-request-params.middleware';
 import { findUserByIdMiddleware } from '@/middlewares/users/find-user-by-id.middleware';
-import { UpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
+import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
 import { objectId } from '@/utils/yup/custom-schemas/object-id.schema';
 
 export const usersRouter = new Router({ prefix: '/users' });
@@ -22,7 +22,7 @@ usersRouter.patch(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
   findUserByIdMiddleware,
-  vaidateRequestBodyMiddleware<UpdateUserDto>(
+  vaidateRequestBodyMiddleware<IUpdateUserDto>(
     object({
       name: string(),
       lastName: string(),

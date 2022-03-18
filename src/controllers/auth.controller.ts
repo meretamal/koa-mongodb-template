@@ -1,12 +1,12 @@
 import { RouterContext } from '@koa/router';
 import { User } from '@/models/user.model';
-import { SignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
-import { SignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
+import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
+import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/utils/jwt/generate-token';
 
 export class AuthController {
   static async signUp(ctx: RouterContext) {
-    const data = <SignUpDto>ctx.request.body;
+    const data = <ISignUpDto>ctx.request.body;
     const existingUser = await User.findOne({ email: data.email }).exec();
     if (existingUser) {
       ctx.throw(409, {
@@ -25,7 +25,7 @@ export class AuthController {
   }
 
   static async signIn(ctx: RouterContext) {
-    const { email, password } = <SignInDto>ctx.request.body;
+    const { email, password } = <ISignInDto>ctx.request.body;
     const user = await User.findOne({ email }).select('+password').exec();
     if (!user) {
       ctx.throw(404, { errors: [`user with email ${email} does not exist`] });
