@@ -12,11 +12,15 @@ export function vaidateRequestParamsMiddleware<Type>(
       });
       await next();
     } catch (error) {
-      ctx.status = 400;
-      ctx.body = {
-        message: 'Bad request',
-        errors: error instanceof ValidationError && error.errors,
-      };
+      if (error instanceof ValidationError) {
+        ctx.status = 400;
+        ctx.body = {
+          message: 'Bad request',
+          errors: error instanceof ValidationError && error.errors,
+        };
+      } else {
+        throw error;
+      }
     }
   };
 }

@@ -9,11 +9,9 @@ export class AuthController {
     const data = <SignUpDto>ctx.request.body;
     const existingUser = await User.findOne({ email: data.email }).exec();
     if (existingUser) {
-      ctx.status = 409;
-      ctx.body = {
-        message: 'Conflict',
+      ctx.throw(409, {
         errors: [`user with email ${data.email} already exists`],
-      };
+      });
     } else {
       const user = new User(data);
       try {
@@ -21,10 +19,7 @@ export class AuthController {
         ctx.status = 201;
         ctx.body = user;
       } catch (error) {
-        ctx.status = 422;
-        ctx.body = {
-          message: 'Unprocessable entity',
-        };
+        ctx.throw(422);
       }
     }
   }
@@ -33,11 +28,7 @@ export class AuthController {
     const { email, password } = <SignInDto>ctx.request.body;
     const user = await User.findOne({ email }).select('+password').exec();
     if (!user) {
-      ctx.status = 404;
-      ctx.body = {
-        message: 'Not found',
-        errors: [`user with email ${email} does not exist`],
-      };
+      ctx.throw(404, { errors: [`user with email ${email} does not exist`] });
     } else {
       const doPasswordsMatch = await user.comparePassword(password);
       if (doPasswordsMatch) {
@@ -48,11 +39,7 @@ export class AuthController {
           type: 'Bearer',
         };
       } else {
-        ctx.status = 401;
-        ctx.body = {
-          message: 'Unauthorized',
-          errors: ['incorrect password'],
-        };
+        ctx.throw(401, { errors: ['incorrect password'] });
       }
     }
   }
