@@ -1,10 +1,8 @@
-import Queue, { JobOptions } from 'bull';
+import { JobOptions } from 'bull';
 import { sendEmail } from '@/mailer';
-import { config } from '@/config';
+import { createQueue } from '@/utils/queues/create-queue';
 
-const sendEmailQueue = new Queue('send-email-queue', {
-  redis: config.redis,
-});
+const sendEmailQueue = createQueue('send-email-queue');
 
 sendEmailQueue.process((job) => {
   return sendEmail(job.data);
