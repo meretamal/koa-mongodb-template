@@ -10,6 +10,7 @@
     "build": "tsc && tsc-alias",
     "prebuild": "yarn clean",
     "postbuild": "copyfiles -u 1 src/**/*.html.ejs dist/",
+    "heroku-postbuild": "yarn build",
     "clean": "rm -rf ./dist",
     "lint": "eslint --ext .ts src",
     "lint:fix": "eslint --ext .ts src --fix",
