@@ -27,7 +27,7 @@ Finally, run your app:
 ```bash
 yarn start # npm run start
 ```
-and visit http://localhost:3000 (you can change the port by changing the `APP_PORT` variable in your .env file).
+and visit http://localhost:3000 (you can change the port by changing the `PORT` variable in your .env file).
 
 ## Environment
 There are some variables your are **required** to use for this template to work:
@@ -40,7 +40,7 @@ There are some variables your are **required** to use for this template to work:
 * **MAILER_SENDER**: address used to send emails.
 
 Others (optional):
-* **APP_PORT**: port in which the app will run (defaults to 3000).
+* **PORT**: port in which the app will run (defaults to 3000).
 * **APP_NAME**: name of the app you are building (defaults to Koa MongoDB Starter).
 * **JWT_EXPIRATION**: expiration time for auth tokens (tokens don't expire by default).
 * **REDIS_HOST**: host in which your redis service is running (defaults to localhost).

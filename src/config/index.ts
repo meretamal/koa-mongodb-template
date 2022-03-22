@@ -4,9 +4,9 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export const config = {
+  port: Number(process.env.PORT || 3000),
   app: {
     name: process.env.APP_NAME || 'Koa MongoDB Starter',
-    port: Number(process.env.PORT || 3000),
   },
   database: {
     url: process.env.DATABASE_URL!,

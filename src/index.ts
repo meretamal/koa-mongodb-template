@@ -3,8 +3,8 @@ import { connect } from 'mongoose';
 import { config } from '@/config';
 import { app } from './app';
 
-app.listen(config.app.port, async () => {
-  console.log(`App listening on port ${config.app.port}`);
+app.listen(config.port, async () => {
+  console.log(`App listening on port ${config.port}`);
   try {
     await connect(config.database.url);
     console.log('Connection to database established successfully');
