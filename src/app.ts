@@ -3,7 +3,7 @@ import koaBody from 'koa-body';
 import koaCors from '@koa/cors';
 import koaLogger from 'koa-logger';
 import { RouterContext } from '@koa/router';
-import { isHttpError } from '@/utils/errors/is-http-error';
+import { isHttpError } from 'http-errors';
 import { router } from './routers';
 
 export const app = new Koa();
