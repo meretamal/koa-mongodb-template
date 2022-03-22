@@ -11,11 +11,9 @@ export function vaidateRequestBodyMiddleware<Type>(
       await next();
     } catch (error) {
       if (error instanceof ValidationError) {
-        ctx.status = 400;
-        ctx.body = {
-          message: 'Bad request',
-          errors: error instanceof ValidationError && error.errors,
-        };
+        ctx.throw(404, {
+          errors: error.errors,
+        });
       } else {
         throw error;
       }
