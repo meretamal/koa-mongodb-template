@@ -4,7 +4,7 @@ import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/utils/jwt/generate-token';
 import { addSendEmailJob } from '@/jobs/send-email.job';
-import { config } from '@/config';
+import { environment } from '@/config/environment';
 
 export class AuthController {
   static async signUp(ctx: RouterContext) {
@@ -20,7 +20,7 @@ export class AuthController {
         await user.save();
         addSendEmailJob({
           receptant: email,
-          subject: `Welcome to ${config.app.name}`,
+          subject: `Welcome to ${environment.app.name}`,
           template: 'sign-up',
           data: { name, lastName },
         });

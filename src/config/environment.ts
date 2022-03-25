@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const config = {
+export const environment = {
   port: Number(process.env.PORT || 3000),
   app: {
     name: process.env.APP_NAME || 'Koa MongoDB Starter',

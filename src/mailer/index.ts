@@ -1,13 +1,13 @@
 import { createTransport } from 'nodemailer';
 import { renderFile } from 'ejs';
-import { config } from '@/config';
+import { environment } from '@/config/environment';
 
 export const transporter = createTransport({
-  host: config.mailer.smtpHost,
-  port: config.mailer.smtpPort,
+  host: environment.mailer.smtpHost,
+  port: environment.mailer.smtpPort,
   auth: {
-    user: config.mailer.smtpUsername,
-    pass: config.mailer.smtpPassword,
+    user: environment.mailer.smtpUsername,
+    pass: environment.mailer.smtpPassword,
   },
 });
 
@@ -30,7 +30,7 @@ export async function sendEmail({
     },
   );
   await transporter.sendMail({
-    from: { name: config.app.name, address: config.mailer.sender },
+    from: { name: environment.app.name, address: environment.mailer.sender },
     to: receptant,
     subject,
     html,
