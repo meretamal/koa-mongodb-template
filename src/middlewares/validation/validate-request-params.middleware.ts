@@ -13,7 +13,7 @@ export function vaidateRequestParamsMiddleware<Type>(
       await next();
     } catch (error) {
       if (error instanceof ValidationError) {
-        ctx.throw(404, {
+        ctx.throw(400, {
           errors: error.errors,
         });
       } else {
