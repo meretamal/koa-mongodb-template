@@ -24,6 +24,7 @@ app.use(async (ctx: RouterContext, next: Next) => {
       ctx.body = {
         message: 'Internal Server Error',
       };
+      // eslint-disable-next-line no-console
       console.log(error);
     }
   }
