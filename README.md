@@ -7,7 +7,7 @@ A Koa template with all the cool things you need.
 * Yarn
 * MongoDB
 * Redis
-* Smtp credentials
+* SMTP credentials
 
 ## Setup
 First of all, make a copy of this project by clicking on **"Use this template"**.
@@ -25,24 +25,22 @@ and fill the necessary variables.
 
 Finally, run your app:
 ```bash
-yarn start # npm run start
+yarn start # or yarn start:dev
 ```
-and visit http://localhost:3000 (you can change the port by changing the `PORT` variable in your .env file).
+and visit http://localhost:3000/ (you can change the port by changing the `PORT` variable in your .env file).
 
 ## Environment
 There are some variables your are **required** to use for this template to work:
+* **APP_NAME**: name of the app you are building (defaults to Koa MongoDB Starter).
 * **DATABASE_URL**: url of your MongoDB service.
 * **JWT_SECRET**: secret used to generate auth tokens.
-* **MAILER_SMTP_HOST**:
-* **MAILER_SMTP_PORT**:
-* **MAILER_SMTP_USERNAME**:
-* **MAILER_SMTP_PASSWORD**:
-* **MAILER_SENDER**: address used to send emails.
-
-Others (optional):
-* **PORT**: port in which the app will run (defaults to 3000).
-* **APP_NAME**: name of the app you are building (defaults to Koa MongoDB Starter).
 * **JWT_EXPIRATION**: expiration time for auth tokens (tokens don't expire by default).
+* **MAILER_SMTP_HOST**: the host runnning your smtp service.
+* **MAILER_SMTP_PORT**: the port in which is running your smtp service.
+* **MAILER_SMTP_USERNAME**: your smtp username.
+* **MAILER_SMTP_PASSWORD**: your smtp password.
+* **MAILER_SENDER**: address used to send emails.
+* **PORT**: port in which the app will run (defaults to 3000).
 * **REDIS_HOST**: host in which your redis service is running (defaults to localhost).
 * **REDIS_PORT**: port in which your redis service is running (defaults to 6379).
 
@@ -56,8 +54,11 @@ This template comes with different tools that you will definetly love:
 * [Jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) to generate auth tokens.
 * [Koa](https://koajs.com/) to run the server and manage requests.
 * [Mongoose](https://mongoosejs.com/) to to facilitate the use of MongoDB.
-* [Nodemailer](https://nodemailer.com/about/) to send emails
+* [Nodemailer](https://nodemailer.com/about/) to send emails.
 * [Yup](https://github.com/jquense/yup) to validate data.
+
+## Deploy
+This project is configured with a [Procfile](./Procfile) to be able to run in Heroku. Also, with every deploy, you don't have to worry about generating a production build first, because it is already taken care of by the `heroku-postbuild` command defined in the **package.json** file.
 
 ## CI
 This project is configured with [GitHub Actions](https://github.com/features/actions) so that each pull request is checked for eslint offenses.
