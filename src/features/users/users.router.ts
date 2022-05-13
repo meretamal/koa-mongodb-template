@@ -6,7 +6,7 @@ import { vaidateRequestParamsMiddleware } from '@/features/common/middlewares/va
 import { findUserByIdMiddleware } from '@/features/users/middlewares/find-user-by-id.middleware';
 import { isCurrentUserMiddleware } from '@/features/common/middlewares/authorization/is-current-user.middleware';
 import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
-import { objectId } from '@/utils/yup/custom-schemas/object-id.schema';
+import { objectId } from '@/features/common/yup/custom-schemas/object-id.schema';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
