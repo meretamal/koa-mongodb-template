@@ -1,6 +1,6 @@
 import Router from '@koa/router';
 import { object, string } from 'yup';
-import { UsersController } from '@/controllers/users.controller';
+import { UsersController } from '@/features/users/users.controller';
 import { vaidateRequestBodyMiddleware } from '@/middlewares/validation/validate-request-body.middleware';
 import { vaidateRequestParamsMiddleware } from '@/middlewares/validation/validate-request-params.middleware';
 import { findUserByIdMiddleware } from '@/middlewares/users/find-user-by-id.middleware';
