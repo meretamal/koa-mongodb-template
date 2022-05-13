@@ -4,7 +4,7 @@ import koaCors from '@koa/cors';
 import koaLogger from 'koa-logger';
 import { RouterContext } from '@koa/router';
 import { isHttpError } from 'http-errors';
-import { router } from './routers';
+import { router } from './router';
 
 export const app = new Koa();
 
