@@ -3,7 +3,7 @@ import { User } from '@/models/user.model';
 import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/modules/auth/utils/generate-token';
-import { addSendEmailJob } from '@/jobs/send-email.job';
+import { addSendEmailJob } from '@/jobs/send-email/send-email.job';
 import { environment } from '@/config/environment';
 
 export class AuthController {
