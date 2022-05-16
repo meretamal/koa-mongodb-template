@@ -1,5 +1,5 @@
 import { RouterContext } from '@koa/router';
-import { User } from '@/models/user.model';
+import { User } from '@/database/models/user.model';
 import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/modules/auth/utils/generate-token';
