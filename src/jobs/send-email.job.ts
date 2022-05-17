@@ -1,5 +1,12 @@
 import { JobOptions } from 'bull';
-import { sendEmailQueue } from './send-email.queue';
+import { sendEmail } from '@/mailer';
+import { createQueue } from './utils/create-queue';
+
+const sendEmailQueue = createQueue('send-email-queue');
+
+sendEmailQueue.process((job) => {
+  return sendEmail(job.data);
+});
 
 export function addSendEmailJob(
   jobData: {
