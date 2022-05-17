@@ -1,5 +1,5 @@
 import { RouterContext } from '@koa/router';
-import { User } from '@/models/user.model';
+import { User } from '@/database/models/user.model';
 import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
 
 export class UsersController {

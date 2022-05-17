@@ -1,6 +1,6 @@
 import { JobOptions } from 'bull';
 import { sendEmail } from '@/mailer';
-import { createQueue } from '@/utils/queues/create-queue';
+import { createQueue } from './utils/create-queue';
 
 const sendEmailQueue = createQueue('send-email-queue');
 

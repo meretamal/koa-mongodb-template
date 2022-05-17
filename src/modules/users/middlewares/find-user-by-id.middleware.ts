@@ -1,6 +1,6 @@
 import { Next } from 'koa';
 import { RouterContext } from '@koa/router';
-import { User } from '@/models/user.model';
+import { User } from '@/database/models/user.model';
 
 export async function findUserByIdMiddleware(ctx: RouterContext, next: Next) {
   const { id } = ctx.params;

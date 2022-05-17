@@ -1,8 +1,8 @@
 import Router, { RouterContext } from '@koa/router';
 import jwt from 'koa-jwt';
 import { environment } from '@/config/environment';
-import { usersRouter } from './users.router';
-import { authRouter } from './auth.router';
+import { usersRouter } from './modules/users/users.router';
+import { authRouter } from './modules/auth/auth.router';
 
 export const router = new Router();
 
