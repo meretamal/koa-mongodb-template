@@ -1,10 +1,10 @@
 import { RouterContext } from '@koa/router';
-import { User } from '@/database/models/user.model';
+import { prisma } from '@/prisma/client.prisma';
 import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
 
 export class UsersController {
   static async list(ctx: RouterContext) {
-    const users = await User.find();
+    const users = await prisma.user.findMany();
     ctx.body = users;
   }
 
@@ -15,14 +15,21 @@ export class UsersController {
 
   static async update(ctx: RouterContext) {
     const data = <IUpdateUserDto>ctx.request.body;
-    const user = await User.findByIdAndUpdate(ctx.params.id, data, {
-      new: true,
+    const user = await prisma.user.update({
+      where: {
+        id: ctx.params.id,
+      },
+      data,
     });
     ctx.body = user;
   }
 
   static async delete(ctx: RouterContext) {
-    await User.findByIdAndDelete(ctx.params.id);
+    await prisma.user.delete({
+      where: {
+        id: ctx.params.id,
+      },
+    });
     ctx.body = {
       message: 'Deleted',
     };
