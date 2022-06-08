@@ -16,6 +16,9 @@
     "lint:fix": "eslint --ext .ts src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prisma": {
+    "schema": "./src/prisma/schema.prisma"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/meretamal/koa-mongodb-starter.git"
