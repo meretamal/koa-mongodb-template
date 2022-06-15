@@ -1,8 +1,8 @@
 import { sign, SignOptions } from 'jsonwebtoken';
+import { User } from '@prisma/client';
 import { environment } from '@/config/environment';
-import { IUser } from '@/interfaces/entities/user.entity';
 
-export function generateToken(user: IUser) {
+export function generateToken(user: User) {
   return new Promise((resolve, reject) => {
     const options: SignOptions = {};
     if (environment.jwt.expiration) {

@@ -53,9 +53,17 @@ This template comes with different tools that you will definetly love:
 * [Eslint](https://eslint.org/) + [Prettier](https://prettier.io/) to check for syntax errors and enforce a common code style.
 * [Jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) to generate auth tokens.
 * [Koa](https://koajs.com/) to run the server and manage requests.
-* [Mongoose](https://mongoosejs.com/) to to facilitate the use of MongoDB.
 * [Nodemailer](https://nodemailer.com/about/) to send emails.
+* [Prisma](https://www.prisma.io/) to to facilitate the use of MongoDB.
 * [Yup](https://github.com/jquense/yup) to validate data.
+
+## Using Prisma
+
+To able to use Prisma correctly, every time you make a change to your schema file, run:
+```bash
+yarn prisma generate
+````
+to update your prisma client code.
 
 ## Deploy
 This project is configured with a [Procfile](./Procfile) to be able to run in Heroku. Also, with every deploy, you don't have to worry about generating a production build first, because it is already taken care of by the `heroku-postbuild` command defined in the **package.json** file.

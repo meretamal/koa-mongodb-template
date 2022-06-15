@@ -2,7 +2,7 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable @typescript-eslint/no-explicit-any  */
 
-import { isValidObjectId, ObjectId } from 'mongoose';
+import { ObjectId } from 'bson';
 import { MixedSchema, ValidationError } from 'yup';
 
 export class ObjectIdSchema extends MixedSchema {
@@ -16,8 +16,8 @@ export class ObjectIdSchema extends MixedSchema {
     });
   }
 
-  _typeCheck(_value: any): _value is ObjectId {
-    return isValidObjectId(_value);
+  _typeCheck(value: any): value is ObjectId {
+    return ObjectId.isValid(value);
   }
 }
 
