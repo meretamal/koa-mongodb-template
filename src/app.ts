@@ -32,7 +32,10 @@ app.use(async (ctx: RouterContext, next: Next) => {
 
 app.use(koaBody());
 app.use(koaCors());
-app.use(koaLogger());
+
+if (process.env.NODE_ENV !== 'test') {
+  app.use(koaLogger());
+}
 
 app.use(router.routes());
 app.use(router.allowedMethods({ throw: true }));
