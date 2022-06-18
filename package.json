@@ -31,6 +31,7 @@
   },
   "homepage": "https://github.com/meretamal/koa-mongodb-starter#readme",
   "devDependencies": {
+    "@faker-js/faker": "^7.2.0",
     "@types/bcrypt": "^5.0.0",
     "@types/bull": "^3.15.8",
     "@types/ejs": "^3.1.0",
@@ -53,6 +54,7 @@
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "fishery": "^2.2.2",
     "jest": "^28.1.1",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
