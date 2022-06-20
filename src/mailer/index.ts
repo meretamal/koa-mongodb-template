@@ -1,4 +1,4 @@
-import { createTransport } from 'nodemailer';
+import { createTransport, createTestAccount } from 'nodemailer';
 import { renderFile } from 'ejs';
 import { environment } from '@/config/environment';
 
@@ -29,10 +29,25 @@ export async function sendEmail({
       async: true,
     },
   );
-  await transporter.sendMail({
+  const emailData = {
     from: { name: environment.app.name, address: environment.mailer.sender },
     to: receptant,
     subject,
     html,
-  });
+  };
+  if (process.env.NODE_ENV === 'test') {
+    const testAccount = await createTestAccount();
+    const testTransporter = createTransport({
+      host: testAccount.smtp.host,
+      port: testAccount.smtp.port,
+      secure: testAccount.smtp.secure,
+      auth: {
+        user: testAccount.user,
+        pass: testAccount.pass,
+      },
+    });
+    await testTransporter.sendMail(emailData);
+  } else {
+    await transporter.sendMail(emailData);
+  }
 }
