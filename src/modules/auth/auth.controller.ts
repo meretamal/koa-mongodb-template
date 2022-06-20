@@ -21,22 +21,18 @@ export class AuthController {
         errors: [`user with email ${email} already exists`],
       });
     } else {
-      try {
-        const hashedPassword = await hashPassword(password);
-        const user = await prisma.user.create({
-          data: { name, lastName, email, password: hashedPassword },
-        });
-        addSendEmailJob({
-          receptant: email,
-          subject: `Welcome to ${environment.app.name}`,
-          template: 'sign-up',
-          data: { name, lastName },
-        });
-        ctx.status = 201;
-        ctx.body = user;
-      } catch (error) {
-        ctx.throw(422);
-      }
+      const hashedPassword = await hashPassword(password);
+      const user = await prisma.user.create({
+        data: { name, lastName, email, password: hashedPassword },
+      });
+      addSendEmailJob({
+        receptant: email,
+        subject: `Welcome to ${environment.app.name}`,
+        template: 'sign-up',
+        data: { name, lastName },
+      });
+      ctx.status = 201;
+      ctx.body = user;
     }
   }
 
