@@ -20,7 +20,6 @@ describe('Auth', () => {
   describe('POST /auth/sign-up', () => {
     it('should return a successful response', async () => {
       const user = userFactory.build();
-      delete user.id;
       const response = await request(app.callback())
         .post('/auth/sign-up')
         .send({ ...user, confirmPassword: user.password });
@@ -45,7 +44,6 @@ describe('Auth', () => {
         lastName: '',
         password: '',
       });
-      delete user.id;
       const response = await request(app.callback())
         .post('/auth/sign-up')
         .send({ ...user, confirmPassword: user.password });
@@ -64,7 +62,6 @@ describe('Auth', () => {
       const user = userFactory.build({
         email: 'invalid email',
       });
-      delete user.id;
       const response = await request(app.callback())
         .post('/auth/sign-up')
         .send({ ...user, confirmPassword: user.password });
@@ -75,7 +72,6 @@ describe('Auth', () => {
 
     it('should return a bad request response for mismatching passwords', async () => {
       const user = userFactory.build();
-      delete user.id;
       const response = await request(app.callback())
         .post('/auth/sign-up')
         .send({ ...user, confirmPassword: 'wrong password' });
@@ -88,7 +84,6 @@ describe('Auth', () => {
 
     it('should return a conflict response', async () => {
       const user = userFactory.build();
-      delete user.id;
       await prisma.user.create({ data: user });
       const response = await request(app.callback())
         .post('/auth/sign-up')

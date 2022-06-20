@@ -3,7 +3,6 @@ import { Factory } from 'fishery';
 import { faker } from '@faker-js/faker';
 
 export const userFactory = Factory.define<Prisma.UserCreateInput>(() => ({
-  id: faker.datatype.uuid(),
   email: faker.internet.email(),
   name: faker.name.firstName(),
   lastName: faker.name.lastName(),
