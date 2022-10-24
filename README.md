@@ -1,4 +1,4 @@
-# Koa MongoDB Starter
+# Koa MongoDB Template
 
 A Koa template with all the cool things you need.
 
