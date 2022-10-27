@@ -1,14 +1,16 @@
 import { RouterContext } from '@koa/router';
-import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
-import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
-import { generateToken } from '@/modules/auth/utils/generate-token';
 import { prisma } from '@/prisma/client.prisma';
+import { ISignInRequest } from './types/requests/sign-in.request';
+import { ISignUpRequest } from './types/requests/sign-up.request';
+import { generateToken } from './utils/generate-token';
 import { hashPassword } from './utils/hash-password';
 import { comparePassword } from './utils/compare-password';
 
 export class AuthController {
   static async signUp(ctx: RouterContext) {
-    const { name, lastName, email, password } = <ISignUpDto>ctx.request.body;
+    const { name, lastName, email, password } = <ISignUpRequest>(
+      ctx.request.body
+    );
     const existingUser = await prisma.user.findUnique({
       where: {
         email,
@@ -29,7 +31,7 @@ export class AuthController {
   }
 
   static async signIn(ctx: RouterContext) {
-    const { email, password } = <ISignInDto>ctx.request.body;
+    const { email, password } = <ISignInRequest>ctx.request.body;
     const user = await prisma.user.findUnique({
       where: {
         email,

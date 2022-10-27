@@ -2,14 +2,14 @@ import Router from '@koa/router';
 import { object, string, ref } from 'yup';
 import { AuthController } from '@/modules/auth/auth.controller';
 import { vaidateRequestBodyMiddleware } from '@/shared/middlewares/validation/validate-request-body.middleware';
-import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
-import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
+import { ISignInRequest } from './types/requests/sign-in.request';
+import { ISignUpRequest } from './types/requests/sign-up.request';
 
 export const authRouter = new Router({ prefix: '/auth' });
 
 authRouter.post(
   '/sign-up',
-  vaidateRequestBodyMiddleware<ISignUpDto>(
+  vaidateRequestBodyMiddleware<ISignUpRequest>(
     object({
       name: string().required(),
       lastName: string().required(),
@@ -25,7 +25,7 @@ authRouter.post(
 
 authRouter.post(
   '/sign-in',
-  vaidateRequestBodyMiddleware<ISignInDto>(
+  vaidateRequestBodyMiddleware<ISignInRequest>(
     object({
       email: string().email().required(),
       password: string().required(),

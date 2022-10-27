@@ -1,6 +1,6 @@
 import { RouterContext } from '@koa/router';
 import { prisma } from '@/prisma/client.prisma';
-import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
+import { IUpdateUserRequest } from './types/requests/update-user.request';
 
 export class UsersController {
   static async list(ctx: RouterContext) {
@@ -14,7 +14,7 @@ export class UsersController {
   }
 
   static async update(ctx: RouterContext) {
-    const data = <IUpdateUserDto>ctx.request.body;
+    const data = <IUpdateUserRequest>ctx.request.body;
     const user = await prisma.user.update({
       where: {
         id: ctx.params.id,

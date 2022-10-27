@@ -5,8 +5,8 @@ import { vaidateRequestBodyMiddleware } from '@/shared/middlewares/validation/va
 import { vaidateRequestParamsMiddleware } from '@/shared/middlewares/validation/validate-request-params.middleware';
 import { findUserByIdMiddleware } from '@/modules/users/middlewares/find-user-by-id.middleware';
 import { isCurrentUserMiddleware } from '@/shared/middlewares/authorization/is-current-user.middleware';
-import { IUpdateUserDto } from '@/interfaces/dtos/users/update-user.dto';
 import { objectId } from '@/shared/yup/custom-schemas/object-id.schema';
+import { IUpdateUserRequest } from './types/requests/update-user.request';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
@@ -22,7 +22,7 @@ usersRouter.get(
 usersRouter.patch(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
-  vaidateRequestBodyMiddleware<IUpdateUserDto>(
+  vaidateRequestBodyMiddleware<IUpdateUserRequest>(
     object({
       name: string(),
       lastName: string(),
