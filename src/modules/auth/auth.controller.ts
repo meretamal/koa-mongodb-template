@@ -2,8 +2,6 @@ import { RouterContext } from '@koa/router';
 import { ISignInDto } from '@/interfaces/dtos/auth/sign-in.dto';
 import { ISignUpDto } from '@/interfaces/dtos/auth/sign-up.dto';
 import { generateToken } from '@/modules/auth/utils/generate-token';
-import { addSendEmailJob } from '@/jobs/send-email.job';
-import { environment } from '@/config/environment';
 import { prisma } from '@/prisma/client.prisma';
 import { hashPassword } from './utils/hash-password';
 import { comparePassword } from './utils/compare-password';
@@ -24,12 +22,6 @@ export class AuthController {
       const hashedPassword = await hashPassword(password);
       const user = await prisma.user.create({
         data: { name, lastName, email, password: hashedPassword },
-      });
-      addSendEmailJob({
-        receptant: email,
-        subject: `Welcome to ${environment.app.name}`,
-        template: 'sign-up',
-        data: { name, lastName },
       });
       ctx.status = 201;
       ctx.body = user;
