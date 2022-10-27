@@ -1,7 +1,10 @@
 version: "3.9"
 services:
   api:
-    build: ./
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
     container_name: api
     command: yarn start:dev
     volumes:
