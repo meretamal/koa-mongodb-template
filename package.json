@@ -9,7 +9,6 @@
     "start:prod": "node ./dist/index.js",
     "build": "tsc --project tsconfig.build.json && tsc-alias",
     "prebuild": "yarn clean",
-    "postbuild": "copyfiles -u 1 src/**/*.html.ejs dist",
     "heroku-postbuild": "yarn build",
     "clean": "rm -rf ./dist",
     "lint": "eslint --ext .ts src",
