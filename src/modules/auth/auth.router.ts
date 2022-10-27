@@ -1,7 +1,7 @@
 import Router from '@koa/router';
 import { object, string, ref } from 'yup';
-import { AuthController } from '@/modules/auth/auth.controller';
 import { vaidateRequestBodyMiddleware } from '@/shared/middlewares/validation/validate-request-body.middleware';
+import { AuthController } from './auth.controller';
 import { ISignInRequest } from './types/requests/sign-in.request';
 import { ISignUpRequest } from './types/requests/sign-up.request';
 
