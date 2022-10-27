@@ -126,7 +126,7 @@ describe('Auth', () => {
       expect(response.body.errors).toContain(BAD_REQUEST_INVALID_EMAIL_ERROR);
     });
 
-    it('should return a not found resonsponse for a non existing email', async () => {
+    it('should return a not found response for a non existing email', async () => {
       const user = userFactory.build({
         email: 'savedemail@test.com',
       });
