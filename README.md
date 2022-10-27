@@ -53,8 +53,5 @@ yarn prisma generate
 ````
 to update your prisma client code.
 
-## Deploy
-This project is configured with a [Procfile](./Procfile) to be able to run in Heroku. Also, with every deploy, you don't have to worry about generating a production build first, because it is already taken care of by the `heroku-postbuild` command defined in the **package.json** file.
-
 ## CI
 This project is configured with [GitHub Actions](https://github.com/features/actions) so that each pull request is checked for eslint offenses.
