@@ -1,0 +1,13 @@
+version: "3.9"
+services:
+  api:
+    build: ./
+    container_name: api
+    command: yarn start:dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
