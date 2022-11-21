@@ -1,34 +1,13 @@
-import Koa, { Next } from 'koa';
+import Koa from 'koa';
 import koaBody from 'koa-body';
 import koaCors from '@koa/cors';
 import koaLogger from 'koa-logger';
-import { RouterContext } from '@koa/router';
-import { isHttpError } from 'http-errors';
 import { router } from './router';
+import { errorHandlerMiddleware } from './shared/middlewares/error/error-handler.middleware';
 
 export const app = new Koa();
 
-app.use(async (ctx: RouterContext, next: Next) => {
-  try {
-    await next();
-  } catch (error) {
-    if (isHttpError(error)) {
-      ctx.status = error.statusCode || error.status;
-      const { message, errors } = error;
-      ctx.body = {
-        message,
-        errors,
-      };
-    } else {
-      ctx.status = 500;
-      ctx.body = {
-        message: 'Internal Server Error',
-      };
-      // eslint-disable-next-line no-console
-      console.log(error);
-    }
-  }
-});
+app.use(errorHandlerMiddleware);
 
 app.use(koaBody());
 app.use(koaCors());
