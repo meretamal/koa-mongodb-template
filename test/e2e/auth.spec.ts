@@ -15,7 +15,7 @@ const BAD_REQUEST_PASSWORD_MISMATCH_ERROR = "passwords don't match";
 const UNAUTHORIZED_INCORRECT_PASSWORD_ERROR = 'incorrect password';
 
 describe('Auth', () => {
-  beforeEach(async () => {
+  afterEach(async () => {
     await prisma.user.deleteMany({});
   });
 
