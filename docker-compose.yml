@@ -9,8 +9,11 @@ services:
     command: yarn start:dev
     volumes:
       - .:/usr/src/app
-      - /usr/src/app/node_modules
+      - node_modules:/usr/src/app/node_modules
     ports:
       - "${PORT}:${PORT}"
     env_file:
       - .env
+
+volumes:
+  node_modules:
