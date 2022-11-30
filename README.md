@@ -21,9 +21,10 @@ cp .env.example .env
 ```
 and fill the necessary variables.
 
-Finally, run your app:
+Finally, build the docker image and and run your app:
 ```bash
-yarn start # or yarn start:dev
+docker compose build
+docker compose up
 ```
 and visit http://localhost:3000/ (you can change the port by changing the `PORT` variable in your .env file).
 
