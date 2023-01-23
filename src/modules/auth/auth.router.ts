@@ -2,34 +2,21 @@ import Router from '@koa/router';
 import { object, string, ref } from 'yup';
 import { vaidateRequestBodyMiddleware } from '@/shared/middlewares/validation/validate-request-body.middleware';
 import { AuthController } from './auth.controller';
-import { ISignInRequest } from './types/requests/sign-in.request';
-import { ISignUpRequest } from './types/requests/sign-up.request';
+import { ISignInDTO } from './dtos/sign-in.dto';
+import { ISignUpDTO } from './dtos/sign-up.dto';
+import { signUpSchema } from './schemas/sign-up.schema';
+import { signInSchema } from './schemas/sign-in.schema';
 
 export const authRouter = new Router({ prefix: '/auth' });
 
 authRouter.post(
   '/sign-up',
-  vaidateRequestBodyMiddleware<ISignUpRequest>(
-    object({
-      name: string().required(),
-      lastName: string().required(),
-      email: string().email().required(),
-      password: string().required(),
-      confirmPassword: string()
-        .required()
-        .oneOf([ref('password'), null], "passwords don't match"),
-    }).strict(),
-  ),
+  vaidateRequestBodyMiddleware<ISignUpDTO>(signUpSchema.strict()),
   AuthController.signUp,
 );
 
 authRouter.post(
   '/sign-in',
-  vaidateRequestBodyMiddleware<ISignInRequest>(
-    object({
-      email: string().email().required(),
-      password: string().required(),
-    }).strict(),
-  ),
+  vaidateRequestBodyMiddleware<ISignInDTO>(signInSchema.strict()),
   AuthController.signIn,
 );
