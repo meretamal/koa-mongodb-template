@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import { object, string } from 'yup';
+import { object } from 'yup';
 import { vaidateRequestBodyMiddleware } from '@/shared/middlewares/validation/validate-request-body.middleware';
 import { vaidateRequestParamsMiddleware } from '@/shared/middlewares/validation/validate-request-params.middleware';
 import { isCurrentUserMiddleware } from '@/shared/middlewares/authorization/is-current-user.middleware';
