@@ -6,7 +6,8 @@ import { isCurrentUserMiddleware } from '@/shared/middlewares/authorization/is-c
 import { objectId } from '@/shared/yup/custom-schemas/object-id.schema';
 import { UsersController } from './users.controller';
 import { findUserByIdMiddleware } from './middlewares/find-user-by-id.middleware';
-import { IUpdateUserRequest } from './types/requests/update-user.request';
+import { IUpdateUserDTO } from './dtos/update-user.dto';
+import { udpateUserSchema } from './schemas/update-user.schema';
 
 export const usersRouter = new Router({ prefix: '/users' });
 
@@ -22,13 +23,8 @@ usersRouter.get(
 usersRouter.patch(
   '/:id',
   vaidateRequestParamsMiddleware<{ id: unknown }>(object({ id: objectId() })),
-  vaidateRequestBodyMiddleware<IUpdateUserRequest>(
-    object({
-      name: string(),
-      lastName: string(),
-    })
-      .strict()
-      .noUnknown(),
+  vaidateRequestBodyMiddleware<IUpdateUserDTO>(
+    udpateUserSchema.strict().noUnknown(),
   ),
   findUserByIdMiddleware,
   isCurrentUserMiddleware,
