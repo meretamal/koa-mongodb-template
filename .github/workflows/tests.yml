@@ -32,4 +32,5 @@ jobs:
       - name: Run e2e tests
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          JWT_SECRET: jwt-test-secret
         run: yarn test
