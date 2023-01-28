@@ -57,6 +57,6 @@ to update your prisma client code.
 ## CI
 This project is configured with [GitHub Actions](https://github.com/features/actions) so that each pull request is checked for eslint offenses and runs e2e tests.
 
-For this to work you must configure a `ci` environment (in the repository settings), and add a `DATABASE_URL` **secret** pointing to a database to can you use for testing porposes.
+For this to work you must configure a `ci` environment (in the repository settings), and add a `DATABASE_URL` **secret** pointing to a database to can you use for testing purposes.
 
 In a near future I want to configure a docker image to be able to run the tests, so that this step is not necessary.
