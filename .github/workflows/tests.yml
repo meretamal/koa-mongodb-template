@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   e2e:
-    name: eslint
+    name: e2e
     timeout-minutes: 5
     runs-on: ubuntu-latest
     strategy:
