@@ -1,27 +1,26 @@
 import { RouterContext } from '@koa/router';
-import { prisma } from '@/prisma/client.prisma';
 import { ISignInDTO } from './dtos/sign-in.dto';
 import { ISignUpDTO } from './dtos/sign-up.dto';
 import { generateToken } from './utils/generate-token';
 import { hashPassword } from './utils/hash-password';
 import { comparePassword } from './utils/compare-password';
+import { UsersRepository } from '../users/users.repository';
 
 export class AuthController {
   static async signUp(ctx: RouterContext) {
     const { name, lastName, email, password } = <ISignUpDTO>ctx.request.body;
-    const existingUser = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
+    const existingUser = await UsersRepository.findByEmail(email);
     if (existingUser) {
       ctx.throw(409, {
         errors: [`user with email ${email} already exists`],
       });
     } else {
       const hashedPassword = await hashPassword(password);
-      const user = await prisma.user.create({
-        data: { name, lastName, email, password: hashedPassword },
+      const user = await UsersRepository.create({
+        name,
+        lastName,
+        email,
+        password: hashedPassword,
       });
       ctx.status = 201;
       ctx.body = user;
@@ -30,11 +29,7 @@ export class AuthController {
 
   static async signIn(ctx: RouterContext) {
     const { email, password } = <ISignInDTO>ctx.request.body;
-    const user = await prisma.user.findUnique({
-      where: {
-        email,
-      },
-    });
+    const user = await UsersRepository.findByEmail(email);
     if (!user) {
       ctx.throw(404, { errors: [`user with email ${email} does not exist`] });
     } else {
