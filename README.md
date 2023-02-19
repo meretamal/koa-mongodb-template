@@ -40,6 +40,7 @@ There are some variables your are **required** to use for this template to work:
 This template comes with different tools that you will definetly love:
 * [Bcrypt](https://github.com/kelektiv/node.bcrypt.js) to hash user passwords.
 * [Dotenv](https://github.com/motdotla/dotenv) to read .env files.
+* [Jest](https://jestjs.io/) + [Supertest](https://www.npmjs.com/package/supertest) to develop unit tests.
 * [Eslint](https://eslint.org/) + [Prettier](https://prettier.io/) to check for syntax errors and enforce a common code style.
 * [Jsonwebtoken](https://github.com/auth0/node-jsonwebtoken) to generate auth tokens.
 * [Koa](https://koajs.com/) to run the server and manage requests.
